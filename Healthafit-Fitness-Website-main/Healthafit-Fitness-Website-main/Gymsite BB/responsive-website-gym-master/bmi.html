@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate your BMI</title>
+    <link rel="stylesheet" href="fonts/stylesheet.css" media="screen" />
+    <link rel="stylesheet" href="css/style.css" media="screen" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-image:url("/img/background5.jpg");
+
+        margin-top: 3.5rem;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .gif{
+        position:relative;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        margin-bottom: 20px;
+        display: flex;
+      }
+
+      .calculator {
+        max-width: 500px;
+        text-align: center;
+        margin: 0 auto;
+        color: black;
+        background-color: rgb(198, 190, 200);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: black;
+      }
+
+      .form-group input[type="text"] {
+        width: calc(100% - 20px);
+        padding: 8px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .form-group button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .result {
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header" id="home">
+        <div class="container">
+          <nav class="header-navigation" aria-label="navigation">
+            <div class="logo"><span class="yellow">Healtha</span>Fit</div>
+    
+            <img src="img/nav-icon.svg" alt="navigation icon" class="nav-icon" width="30" height="30" />
+    
+            <ul>
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="index.html">About</a>
+              </li>
+              <li>
+                <a href="index.html">Courses</a>
+              </li>
+              <li>
+                <a href="index.html">Trainers</a>
+              </li>
+              <li>
+                <a href="index.html">Contact</a>
+              </li>
+              <li>
+                <a href="#">Check BMI</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+    </header>
+
+    <div class="gif">
+        <!-- <img src="/img/gymkrtisbji.gif" height="200" width="500"> -->
+    </div>
+
+    <div class="calculator">
+      <h2>BMI Calculator</h2>
+      <div class="form-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="text" id="weight" placeholder="Enter weight" />
+      </div>
+      <div class="form-group">
+        <label for="height">Height (cm):</label>
+        <input type="text" id="height" placeholder="Enter height" />
+      </div>
+      <div class="form-group">
+        <button onclick="calculateBMI()">Calculate BMI</button>
+      </div>
+      <div class="result" id="bmiResult"></div>
+    </div>
+    <br>
+    <!-- <img src="/img/mealplan.gif" height="50" /> -->
+
+    <div class="calculator">
+      <h2>BMI-based Diet Chart</h2>
+      <div class="form-group">
+        <label for="bmi">Your BMI:</label>
+        <input type="text" id="bmi" placeholder="Your BMI" />
+      </div>
+      <div class="form-group">
+        <button onclick="generateDiet()">Generate Sample Diet</button>
+      </div>
+      <div class="result" id="dietChart"></div>
+    </div>
+    <!-- start form -->
+    <div class="pdfs">
+    <h1><span class="yellow">Healtha</span>Fit Diet Plans</h1>
+    <p>Select BMI Level:</p>
+    
+    <!-- Form for BMI Level 1: Underweight -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="PDF for Underweight">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Underweight.pdf">
+    </form>
+    
+    <!-- Form for BMI Level 2: Normal Weight -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="PDF for Normal Weight">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Normal Weight.pdf">
+    </form>
+    
+    <!-- Form for BMI Level 3: Overweight -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="PDF for Overweight">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Over Weight.pdf">
+    </form>
+    
+    <!-- Form for BMI Level 4: Obese -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="PDF for Obese">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Obese.pdf">
+    </form>
+
+    <!-- workout -->
+    <p>Select Workout Plan:</p>
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="Workout for Underweight">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Underweight.pdf">
+    </form>
+    
+    <!-- Form for BMI Level 2: Normal Weight -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="Workout for Normal Weight">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Normal Weight.pdf">
+    </form>
+    
+    <!-- Form for BMI Level 3: Overweight -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="Workout for Overweight">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Over Weight.pdf">
+    </form>
+    
+    <!-- Form for BMI Level 4: Obese -->
+    <form method="post" action="http://localhost/download.php">
+        <input type="submit" name="download_pdf" value="Workout for Obese">
+        <input type="hidden" name="pdf_file" value="Diet Chart for Obese.pdf">
+    </form>
+    <!-- workout ends -->
+
+  </div>
+<!-- end -->
+    <script>
+      function calculateBMI() {
+        var weight = parseFloat(document.getElementById("weight").value);
+        var height = parseFloat(document.getElementById("height").value);
+
+        if (!isNaN(weight) && !isNaN(height) && height > 0) {
+          var bmi = weight / ((height / 100) * (height / 100));
+          document.getElementById("bmiResult").innerText =
+            "Your BMI is: " + bmi.toFixed(2);
+            // if(){
+
+            // }
+        } else {
+          document.getElementById("bmiResult").innerText =
+            "Please enter valid weight and height.";
+        }
+      }
+    </script>
+    <script>
+      function generateDiet() {
+        var bmi = parseFloat(document.getElementById("bmi").value);
+        var dietChart = "";
+
+        if (!isNaN(bmi)) {
+          if (bmi < 18.5) {
+            dietChart =
+              "Sample Diet for Underweight: Include more proteins, healthy fats, and carbohydrates in your meals.";
+          } else if (bmi >= 18.5 && bmi < 24.9) {
+            dietChart =
+              "Sample Diet for Normal Weight: Maintain a balanced diet with a variety of fruits, vegetables, proteins, and whole grains.";
+          } else if (bmi >= 25 && bmi < 29.9) {
+            dietChart =
+              "Sample Diet for Overweight: Focus on portion control, reduce sugar and processed foods, and increase physical activity.";
+          } else {
+            dietChart =
+              "Sample Diet for Obesity: Consult a healthcare professional. Focus on portion control, regular exercise, and a balanced diet.";
+          }
+        } else {
+          dietChart = "Invalid BMI value. Please enter a valid BMI.";
+        }
+
+        document.getElementById("dietChart").innerText = dietChart;
+      }
+    </script>
+  </body>
+</html>
